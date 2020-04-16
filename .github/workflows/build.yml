@@ -6,16 +6,15 @@ on:
   pull_request:
     branches: [ master ]
 
-env:
-  DEVKITPRO: /opt/devkitpro
-  DEVKITARM: ${DEVKITPRO}/devkitARM
-  DEVKITPPC: ${DEVKITPRO}/devkitPPC
-  PATH: ${DEVKITPRO}/tools/bin:$PATH
-
 jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      DEVKITPRO: /opt/devkitpro
+      DEVKITARM: ${DEVKITPRO}/devkitARM
+      DEVKITPPC: ${DEVKITPRO}/devkitPPC
+      PATH: ${DEVKITPRO}/tools/bin:$PATH  
     steps:
     - uses: actions/checkout@v2
       with:
