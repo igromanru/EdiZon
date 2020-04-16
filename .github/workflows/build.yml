@@ -14,8 +14,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       with:
-        submodules: 'recursive'   
-    # - name: Install devkitPro libraries
-    #   run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
+        submodules: 'recursive'
     - name: Install libnx from submodule
       run: make install -C ./libs/libnx/nx
+    - name: Build EdiZon
+      run: make
