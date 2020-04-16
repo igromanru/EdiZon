@@ -16,7 +16,7 @@ jobs:
     - name: Download devkitpro
       run: wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
     - name: Install devkitPro pacman
-      run: sudo dpkg -i devkitpro-pacman.deb
+      run: sudo dpkg -i devkitpro-pacman.deb --disable-download-timeout
     - name: Install devkitPro libraries
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm
     - name: Install libnx from submodule
