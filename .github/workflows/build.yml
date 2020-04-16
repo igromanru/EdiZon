@@ -15,19 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v1
       with:
-        submodules: 'recursive'
-    - name: Download devkitpro
-      run: wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
-    - name: Install devkitPro pacman
-      run: sudo apt install ./devkitpro-pacman.deb
-    - name: Install devkitPro libraries
-      run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
+        submodules: 'recursive'   
+    # - name: Install devkitPro libraries
+    #   run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
     - name: Install libnx from submodule
-      env:
-        DEVKITPRO: /opt/devkitpro
-        DEVKITARM: ${DEVKITPRO}/devkitARM
-        DEVKITPPC: ${DEVKITPRO}/devkitPPC
-        PATH: ${DEVKITPRO}/tools/bin:$PATH
-      run: | 
-        cd $GITHUB_WORKSPACE
-        sudo make install -C ./libs/libnx/nx
+      run: sudo make install -C ./libs/libnx/nx
