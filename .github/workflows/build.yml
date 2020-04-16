@@ -15,11 +15,11 @@ jobs:
         submodules: 'recursive'
     - name: Download devkitpro
       run: wget https://github.com/devkitPro/pacman/releases/download/devkitpro-pacman-1.0.1/devkitpro-pacman.deb
-    - name: Install devkitpro
+    - name: Install devkitPro pacman
       run: sudo dpkg -i devkitpro-pacman.deb
-    - name: Install libararies
+    - name: Install devkitPro libraries
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm
     - name: Set environment
-      run: source /etc/profile.d/devkit-env.sh
+      run: sh /etc/profile.d/devkit-env.sh
     - name: Install libnx from submodule
       run: sudo make install -C ./libs/libnx/nx
