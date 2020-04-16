@@ -1,9 +1,16 @@
 name: Build EdiZon
+
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
+
+env:
+  DEVKITPRO: /opt/devkitpro
+  DEVKITARM: ${DEVKITPRO}/devkitARM
+  DEVKITPPC: ${DEVKITPRO}/devkitPPC
+  PATH: ${DEVKITPRO}/tools/bin:$PATH
 
 jobs:
   build:
@@ -21,9 +28,5 @@ jobs:
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
     - name: Install libnx from submodule
       run: | 
+        cd $GITHUB_WORKSPACE
         sudo make install -C ./libs/libnx/nx
-      env:
-        DEVKITPRO: /opt/devkitpro
-        DEVKITARM: ${DEVKITPRO}/devkitARM
-        DEVKITPPC: ${DEVKITPRO}/devkitPPC
-        PATH: ${DEVKITPRO}/tools/bin:$PATH
