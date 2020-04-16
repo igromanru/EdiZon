@@ -20,8 +20,9 @@ jobs:
     - name: Install devkitPro libraries
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm
     - name: Install libnx from submodule
-      run: |
-        ls /etc/profile.d
-        cat /etc/profile.d/devkit-env.sh
-        sh /etc/profile.d/devkit-env.sh
-        sudo make install -C ./libs/libnx/nx
+      run: sudo make install -C ./libs/libnx/nx
+      env:
+        DEVKITPRO: /opt/devkitpro
+        DEVKITARM: ${DEVKITPRO}/devkitARM
+        DEVKITPPC: ${DEVKITPRO}/devkitPPC
+        PATH: ${DEVKITPRO}/tools/bin:$PATH
