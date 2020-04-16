@@ -10,11 +10,7 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
-    env:
-      DEVKITPRO: /opt/devkitpro
-      DEVKITARM: ${DEVKITPRO}/devkitARM
-      DEVKITPPC: ${DEVKITPRO}/devkitPPC
-      PATH: ${DEVKITPRO}/tools/bin:$PATH  
+    
     steps:
     - uses: actions/checkout@v2
       with:
@@ -26,6 +22,11 @@ jobs:
     - name: Install devkitPro libraries
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
     - name: Install libnx from submodule
+      env:
+        DEVKITPRO: /opt/devkitpro
+        DEVKITARM: ${DEVKITPRO}/devkitARM
+        DEVKITPPC: ${DEVKITPRO}/devkitPPC
+        PATH: ${DEVKITPRO}/tools/bin:$PATH
       run: | 
         cd $GITHUB_WORKSPACE
         sudo make install -C ./libs/libnx/nx
