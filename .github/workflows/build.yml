@@ -20,7 +20,8 @@ jobs:
     - name: Install devkitPro libraries
       run: sudo dkp-pacman -S switch-{dev,curl,freetype} --noconfirm --disable-download-timeout
     - name: Install libnx from submodule
-      run: sudo make install -C ./libs/libnx/nx
+      run: | 
+        sudo make install -C ./libs/libnx/nx
       env:
         DEVKITPRO: /opt/devkitpro
         DEVKITARM: ${DEVKITPRO}/devkitARM
